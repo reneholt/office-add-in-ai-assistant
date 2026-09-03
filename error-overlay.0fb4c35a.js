@@ -1,0 +1,2 @@
+!function(){var e=document.getElementById("error-overlay"),n=document.getElementById("error-overlay-text");function r(r){e&&n&&(n.textContent=r,e.style.display="block")}window.addEventListener("error",function(e){r(e.error&&e.error.stack?e.error.stack:e.message||String(e))}),window.addEventListener("unhandledrejection",function(e){var n=e.reason;r("Unhandled promise rejection:\n"+(n&&n.stack?n.stack:n&&n.message?n.message:String(n)))})}();
+//# sourceMappingURL=error-overlay.0fb4c35a.js.map

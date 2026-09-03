@@ -1,0 +1,2 @@
+!function(){"use strict";var a,o;a=new URL("dialog-relay.html",window.location.href).href,o="https://word-add-in-ai-assistant-7474650178747678.aws.databricksapps.com/auth-dialog.html?relayUrl="+encodeURIComponent(a),window.location.replace(o)}();
+//# sourceMappingURL=login-redirect.a323a39b.js.map

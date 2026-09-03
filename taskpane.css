@@ -1,0 +1,433 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure padding/border doesn't expand width beyond 100% */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Error overlay — shown if any script fails to load or a JS error occurs */
+#error-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fde7e9;
+  color: #a4262c;
+  padding: 16px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 13px;
+  overflow: auto;
+  z-index: 9999;
+}
+
+#error-overlay h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+#error-overlay pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 4px 0 0 0;
+  font-size: 12px;
+}
+
+.ms-welcome__main {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex: 1 0 0;
+  flex: 1 0 0;
+  padding: 10px 20px;
+}
+
+/* Databricks auth section */
+.auth-section {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 0;
+  padding: 16px;
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  background: #faf9f8;
+}
+
+.auth-section h3 {
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+.auth-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pane-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pane-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #605e5c;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.pane-icon-btn:hover {
+  color: #0078d7;
+}
+
+.auth-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.auth-status-pending {
+  background: #f3f2f1;
+  color: #605e5c;
+}
+
+.auth-status-success {
+  background: #dff6dd;
+  color: #107c10;
+}
+
+.auth-status-error {
+  background: #fde7e9;
+  color: #a4262c;
+}
+
+.auth-status .ms-Icon {
+  font-size: 1.1rem;
+}
+
+.auth-status-subtitle {
+  padding: 0 12px 8px;
+  font-size: 0.75rem;
+  color: #605e5c;
+}
+
+/* Reasoning effort selector */
+.effort-section {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  background: #faf9f8;
+}
+
+.effort-section h3 {
+  margin: 0;
+}
+
+.effort-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* Cancel button — hidden unless an AI model call is running
+   (actions.ts toggles the .visible class while the call is in flight). */
+.cancel-model-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid #a4262c;
+  border-radius: 4px;
+  background: #fff;
+  color: #a4262c;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.cancel-model-btn.visible {
+  display: inline-flex;
+}
+
+.cancel-model-btn:hover {
+  background: #fde7e9;
+}
+
+.cancel-model-btn:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: 1px;
+}
+
+.cancel-model-btn .ms-Icon {
+  font-size: 0.85rem;
+}
+
+.effort-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.effort-status .ms-Icon {
+  font-size: 1.1rem;
+}
+
+.effort-status-subtitle {
+  padding: 0 12px 12px;
+  font-size: 0.75rem;
+  color: #605e5c;
+}
+
+.effort-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.effort-btn {
+  flex: 1 1 0;
+  padding: 10px 8px;
+  border: 1px solid #edebe9;
+  border-radius: 6px;
+  background: #fff;
+  color: #605e5c;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.effort-btn:hover {
+  background: #f3f2f1;
+  border-color: #d2d0ce;
+  color: #323130;
+}
+
+.effort-btn:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: 1px;
+}
+
+.effort-btn-active {
+  font-weight: 600;
+}
+
+/* Per-effort accent colors — the status pill and the active button share
+   the effort's color: gray = thinking off, then green → amber → red as
+   effort (and token cost) escalates. */
+.effort-status[data-effort="none"],
+.effort-btn-active[data-effort="none"] {
+  background: #f3f2f1;
+  border-color: #605e5c;
+  color: #605e5c;
+}
+
+.effort-status[data-effort="low"],
+.effort-btn-active[data-effort="low"] {
+  background: #dff6dd;
+  border-color: #107c10;
+  color: #107c10;
+}
+
+.effort-status[data-effort="medium"],
+.effort-btn-active[data-effort="medium"] {
+  background: #fff4ce;
+  border-color: #8a6116;
+  color: #8a6116;
+}
+
+.effort-status[data-effort="high"],
+.effort-btn-active[data-effort="high"] {
+  background: #fde7e9;
+  border-color: #a4262c;
+  color: #a4262c;
+}
+
+/* Activity log */
+.log-section {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  background: #faf9f8;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.log-section h3 {
+  margin: 0;
+  text-align: center;
+}
+
+.log-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.log-section-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.log-action-btn {
+  padding: 2px 10px;
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  background: #fff;
+  color: #605e5c;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.log-action-btn:hover {
+  background: #f3f2f1;
+  color: #323130;
+}
+
+.log-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.log-search:focus-within {
+  border-color: #0078d4;
+}
+
+.log-search-icon {
+  flex-shrink: 0;
+  color: #605e5c;
+  font-size: 0.8rem;
+}
+
+.log-search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 2px 0;
+  border: none;
+  background: transparent;
+  color: #323130;
+  font-size: 0.75rem;
+}
+
+.log-search-input:focus {
+  outline: none;
+}
+
+.log-search-input::placeholder {
+  color: #a19f9d;
+}
+
+.log-search-count {
+  flex-shrink: 0;
+  color: #605e5c;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.log-search-hit {
+  background: #fff100;
+  color: #323130;
+  border-radius: 2px;
+}
+
+.log-entries {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  font-family: "Cascadia Code", Consolas, monospace;
+  min-height: 0;
+}
+
+.log-entries:empty {
+  display: none;
+}
+
+.log-entry {
+  display: flex;
+  gap: 6px;
+  padding: 4px 0;
+  border-bottom: 1px solid #edebe9;
+  word-break: break-word;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-entry-time {
+  color: #605e5c;
+  flex-shrink: 0;
+  /* The timestamp is rendered as two lines (date over time) to keep the
+     column narrow — white-space: pre-line makes the embedded newline render. */
+  white-space: pre-line;
+}
+
+.log-entry-msg {
+  flex: 1;
+  white-space: pre-wrap;
+}
+
+.log-entry-error .log-entry-msg {
+  color: #a4262c;
+}
+
+.log-entry-info .log-entry-msg {
+  color: #323130;
+}
+
+.log-entry-success .log-entry-msg {
+  color: #107c10;
+}
+
+.log-entry-reasoning .log-entry-msg {
+  color: #0078d4;
+}
+
+.log-entry-debug .log-entry-msg {
+  color: #605e5c;
+}

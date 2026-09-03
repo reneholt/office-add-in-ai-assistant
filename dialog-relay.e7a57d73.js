@@ -1,0 +1,2 @@
+Office.onReady(function(){var e=window.location.hash.substring(1);if(e)try{var t=decodeURIComponent(e),a=JSON.parse(t);Office.context.ui.messageParent(JSON.stringify(a))}catch(e){Office.context.ui.messageParent(JSON.stringify({error:"Failed to parse auth response: "+e.message}))}else Office.context.ui.messageParent(JSON.stringify({error:"No data received from auth dialog."}))});
+//# sourceMappingURL=dialog-relay.e7a57d73.js.map
